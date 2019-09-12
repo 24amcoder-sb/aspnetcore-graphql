@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CarvedRock.Api.Data;
+using CarvedRock.Api.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -29,7 +30,8 @@ namespace CarvedRock.Api
             services.AddDbContext<CarvedRockDbContext>(options =>
               options.UseSqlServer(Configuration["ConnectionStrings:CarvedRock"]));
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddScoped<ProductRepository>();
+            services.AddScoped<ProductReviewRepository>();            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
